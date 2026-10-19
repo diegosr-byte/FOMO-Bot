@@ -12,7 +12,7 @@ Always call Composio by full path: `~/.local/bin/composio`. Find exact inputs wi
 
 ## Modes
 - No URL ("find me events", "what's worth attending"): run Steps 1-7.
-- A URL: skip to Step 3 for that one event, then Steps 5-7.
+- A URL: the user chose this event, so never drop it as full, sold out, started or happening today. Skip to Step 3 for that one event to read its details, then Steps 5-7 (skip the Calendar event if it has already started). If the event is a hackathon, always run `hackathon-prep.md` (Step 6).
 - "Scan my inbox": do Step 1 only and list the Luma invites you found.
 
 ## Steps
