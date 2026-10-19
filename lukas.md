@@ -10,7 +10,7 @@ Composio does not install on Windows, so on this PC run everything below from **
 - [x] Clone the repo and create `.env` (`cp .env.example .env`).
 - [x] Put YOUR OWN Parallel API key in `.env` (platform.parallel.ai; check it has Task API credits; never ask for Diego's key, never paste keys in chat), run `./setup.sh` and check `cline config mcp` lists `parallel-search` and `parallel-task` (the `cline mcp` command does not exist in this version). Key not yet confirmed by a real search.
 - [x] Install the Composio CLI (v0.4.5, inside Ubuntu) and `composio login` as lukaszm39@gmail.com (done with the key in `.env`; plain `composio login` also works). Always call it as `~/.local/bin/composio`.
-- [x] Link the Google apps: Gmail and Calendar linked. **Docs deliberately not linked** (your choice); the digest goes to a local file `digests/<date>.md` instead (gitignored). Linking was, one command each (it takes one app at a time): `~/.local/bin/composio link gmail`, then `googlecalendar`, then `googledocs`. Approve each link in the browser; add `--no-browser` to print the URL instead.
+- [x] Link the Google apps: Gmail and Calendar linked. **Docs deliberately not linked** (your choice); the digest goes to a local file `digests/<date>.md` instead (gitignored). Link one app per command: `~/.local/bin/composio link gmail`, then `googlecalendar`. Approve each link in the browser; add `--no-browser` to print the URL instead.
 - [x] Install Node and Cline 3.0.73 (inside Ubuntu).
 - [ ] Log in to Cline: `cline auth`.
 - [ ] Run from the repo root (skills are workspace-scoped). Confirm Cline can use `web_search` and `~/.local/bin/composio link gmail --list`.
