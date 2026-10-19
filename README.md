@@ -6,11 +6,13 @@
 Most event finders match topics. FOMO Bot matches your **goal** ("find a technical cofounder", "meet proptech investors", "get hired at company X"). _(In progress, built at the hackathon.)_
 
 1. **Research the people.** For each top event, Parallel researches the hosts, speakers, sponsors and the public guest list: role, what they recently shipped or posted, with sources.
-2. **Pick with a reason.** "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Every skipped event gets a one-line reason, so the agent says no for you.
+2. **Pick with a reason.** "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Every skipped event gets a one-line reason.
 3. **Prep card per person.** 3 people to find, what each recently shipped, one smart question each, and a 20-second intro tailored to that room.
 4. **Outreach to set up meetings.** The agent writes a personal meeting request to each person, citing something they actually shipped and proposing slots from your free calendar time. It is saved as a Gmail **draft** for you to review and send, never sent automatically. If no public email exists, it gives you a LinkedIn or X message to paste.
 
-Next on the list: an event crawl route with real travel times, and next-morning follow-up drafts ("who did you meet?"). Also planned: an energy budget such as "max 3 events a week".
+5. **Anti-FOMO: the agent says no for you.** You set an energy budget, for example "max 3 events a week". The agent decides which events deserve a spot on your calendar, skips the rest and gives a one-line reason for each skip ("skipped X: you're busy Thursday, and Y has the same people"). You don't have to keep track of everything or worry about missing out, because the agent already made the choice.
+
+Next on the list: an event crawl route with real travel times, and next-morning follow-up drafts ("who did you meet?").
 
 Built in the open at the Cline × Parallel × Composio Hackathon (Open Source AI Week, SF, Oct 19 2026).
 
