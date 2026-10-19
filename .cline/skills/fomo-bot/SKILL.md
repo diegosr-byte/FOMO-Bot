@@ -28,7 +28,7 @@ Always call Composio by full path: `~/.local/bin/composio`. Find exact inputs wi
 5. **Act.**
    - Calendar: for each pick, `GOOGLECALENDAR_CREATE_EVENT` with a `[Suggested]` title prefix, `start_datetime`, `end_datetime`, `timezone`, `location`, the URL in `description`, `"transparency":"transparent"`, `"send_updates":"none"`, `"create_meeting_room":false`, no attendees. Check the window first so you don't create duplicates.
    - Doc: `GOOGLEDOCS_CREATE_DOCUMENT_MARKDOWN` with `title` and `markdown_text`: the ranked picks, the reason for each and the source links. Give the user the Doc link.
-6. **Hackathon branch.** If the #1 pick is a hackathon, or the user gave a hackathon URL, run `hackathon-prep.md` in this folder and append its brief to the Doc. Skip this step if that file still starts with TODO.
+6. **Hackathon branch.** If the #1 pick is a hackathon, or the user gave a hackathon URL, run `hackathon-prep.md` in this folder and append its brief to the Doc. Keep polling the research (sleep 60 between checks) for up to 8 minutes before writing the brief without it. Skip this step if that file still starts with TODO.
 7. **Outreach drafts (required every run).** Follow `people-outreach.md` to write the prep cards into the Doc and save up to 3 Gmail drafts (find the tool with `~/.local/bin/composio search "create gmail draft"`). Always create the drafts, even with no public email: the draft goes to the user's own address and its body holds the message to paste (LinkedIn or X if there is no public email). Before drafting, `web_search` each person once for what they recently shipped or posted; cite it. List the drafts in the Doc. 
 
 ## If something fails
