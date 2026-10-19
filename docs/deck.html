@@ -1,65 +1,99 @@
 <!doctype html><html><head><meta charset="utf-8"><title>FOMO Bot</title>
 <style>
 @page{size:13.333in 7.5in;margin:0}
+:root{--ink:#111827;--mute:#5b6577;--line:#e3e7ef;--bg:#f7f8fb;--accent:#ff5a36;--navy:#101624;--cline:#6d4aff;--par:#0b8a6e;--comp:#e08a00}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,Helvetica,Arial,sans-serif;color:#14181f}
-section{width:13.333in;height:7.5in;padding:.7in .9in;page-break-after:always;display:flex;flex-direction:column;justify-content:center;background:#fff;overflow:hidden}
-section.dark{background:#10141c;color:#f4f6fa}
-h1{font-size:68px;margin:0 0 14px;letter-spacing:-1.5px}
-h2{font-size:42px;margin:0 0 26px;letter-spacing:-.5px}
-p,li{font-size:25px;line-height:1.4}
-ul{padding-left:26px;margin:0}li{margin-bottom:10px}section.dark li{font-size:22px;line-height:1.35}
-.sub{font-size:30px;color:#9aa5b8}
-.tag{display:inline-block;background:#ff5a36;color:#fff;border-radius:8px;padding:4px 12px;font-size:20px;font-weight:700;margin-bottom:18px;width:fit-content}
-.row{display:flex;gap:22px;margin-top:10px}
-.box{flex:1;border:2px solid #d9dee8;border-radius:14px;padding:20px 22px}
-.box h3{margin:0 0 8px;font-size:26px}.box p{margin:0;font-size:21px}
-code{background:#eef1f6;padding:2px 8px;border-radius:6px;font-size:22px}
-section.dark code{background:#2a3242;color:#f4f6fa}
-.foot{margin-top:22px;font-size:20px;color:#6b7587}
+body{margin:0;font-family:-apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink)}
+section{position:relative;width:13.333in;height:7.5in;padding:.75in 1in .9in;page-break-after:always;background:var(--bg);overflow:hidden;display:flex;flex-direction:column}
+section::before{content:"";position:absolute;left:0;top:0;width:100%;height:10px;background:var(--accent)}
+section.dark{background:var(--navy);color:#f4f6fa;justify-content:center}
+.eyebrow{font-size:20px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h1{font-size:84px;margin:0 0 18px;letter-spacing:-2px;line-height:1}
+h2{font-size:46px;margin:0 0 26px;letter-spacing:-1px;line-height:1.1}
+p{font-size:26px;line-height:1.4;margin:0}
+.sub{font-size:32px;color:#b6c0d4;max-width:9.5in;line-height:1.35}
+.chips{display:flex;gap:14px;margin-top:34px}
+.chip{border-radius:999px;padding:8px 20px;font-size:22px;font-weight:700;color:#fff}
+.cl{background:var(--cline)}.pa{background:var(--par)}.co{background:var(--comp)}
+.foot{position:absolute;left:1in;right:1in;bottom:.35in;display:flex;justify-content:space-between;font-size:16px;color:var(--mute)}
+section.dark .foot{color:#8b95aa}
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:22px 24px}
+.card h3{margin:0 0 8px;font-size:28px}
+.card p{font-size:22px;line-height:1.35;color:#2b3445}
+.big{font-size:70px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-2px}
+.stat p{font-size:22px;margin-top:8px}
+.step{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+.num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.step p{font-size:24px}
+.tag{display:inline-block;font-size:16px;font-weight:700;color:#fff;border-radius:6px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+.col{border-top:8px solid var(--c);padding-top:18px}
+.col h3{font-size:34px;margin:0 0 4px;color:var(--c)}
+.col .role{font-size:21px;color:var(--mute);margin-bottom:14px}
+.col li{font-size:22px;line-height:1.35;margin-bottom:10px}
+.col ul{padding-left:22px;margin:0}
+.ok{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
+.ok .card p{font-size:22px}
+code{background:#eceff5;padding:1px 7px;border-radius:6px;font-size:.88em}
+section.dark code{background:#27304a;color:#f4f6fa}
 </style></head><body>
 
-<section class="dark"><span class="tag">Cline x Parallel x Composio Hackathon</span>
+<section class="dark">
+<div class="eyebrow">Cline &times; Parallel &times; Composio Hackathon</div>
 <h1>FOMO Bot</h1>
 <p class="sub">A personal agent that finds the tech events worth your time, says no to the rest, and helps you meet the right people.</p>
-<p class="foot">Open source (MIT) &middot; github.com/diegosr-byte/FOMO-Bot &middot; Diego &amp; Lukas</p></section>
+<div class="chips"><span class="chip cl">Cline</span><span class="chip pa">Parallel</span><span class="chip co">Composio</span></div>
+<div class="foot"><span>Diego &amp; Lukas</span><span>Open source (MIT) &middot; github.com/diegosr-byte/FOMO-Bot</span></div>
+</section>
 
-<section><h2>The problem, and who it helps</h2>
-<ul>
-<li>Three hackathons in three weeks. Each one meant hours reading the event page, finding out who the judges are, and checking every sponsor's docs.</li>
-<li>Most events are found by luck, through a friend or a random invite.</li>
-<li>Event lists match topics. They don't know your calendar, your history or your goal, so everything looks worth going to.</li>
-<li><b>For:</b> students, founders and builders in busy tech scenes like SF, who want the right rooms without the overload.</li>
-</ul></section>
-
-<section><h2>What it does</h2>
-<div class="row">
-<div class="box"><h3>1. Learn you</h3><p>Reads your Google Calendar and Gmail (Luma invites, past sign-ups) to infer interests and busy slots.</p></div>
-<div class="box"><h3>2. Find and verify</h3><p>Searches for upcoming events and confirms each date and time on the event's own page. Unconfirmed events are dropped.</p></div>
-<div class="box"><h3>3. Rank by people</h3><p>Scores events by who is there against your goal, and says no for you (anti-FOMO budget).</p></div>
+<section>
+<div class="eyebrow">The problem</div>
+<h2>Great events are everywhere. Finding and prepping for the right ones is a second job.</h2>
+<div class="grid g3">
+<div class="card stat"><div class="big">3</div><p>hackathons in 3 weeks, each with hours of prep: the event page, the judges, every sponsor's docs.</p></div>
+<div class="card stat"><div class="big">?</div><p>Which ones are worth my week? Event lists match topics, not your calendar, your history or your goal.</p></div>
+<div class="card stat"><div class="big">1</div><p>agent that does the finding, the checking and the prep, and says no for you.</p></div>
 </div>
-<div class="row">
-<div class="box"><h3>4. Act</h3><p>Adds <code>[Suggested]</code> holds to Calendar and writes a cited Google Doc digest.</p></div>
-<div class="box"><h3>5. Prep and reach out</h3><p>Prep card per person and an unsent Gmail draft. For hackathons: a judges, sponsors and past-winners brief.</p></div>
-<div class="box"><h3>6. Always on</h3><p>Runs every Monday, and from your phone through Telegram.</p></div>
-</div></section>
+<p style="margin-top:28px"><b>Who it helps:</b> students, founders and builders in busy tech scenes like SF.</p>
+<div class="foot"><span>FOMO Bot</span><span>1 / 5</span></div>
+</section>
 
-<section><h2>How it works: no app code</h2>
-<p>The agent is <b>Cline</b> running one skill (<code>.cline/skills/fomo-bot/</code>). Install it with one script.</p>
-<div class="row">
-<div class="box"><h3>Cline</h3><p>The runtime: the skill, <code>cline schedule</code> for Mondays, <code>cline connect telegram</code> for chat.</p></div>
-<div class="box"><h3>Parallel</h3><p>Search and fetch to find and verify events. Deep research on judges, sponsors and people, with citations.</p></div>
-<div class="box"><h3>Composio</h3><p>Picks the right tool and acts: Google Calendar, Gmail drafts and Google Docs.</p></div>
+<section>
+<div class="eyebrow">What it does</div>
+<h2>Ask in one line. Get a plan you can trust.</h2>
+<div class="step"><div class="num">1</div><p><b>Learn you.</b> Reads your Calendar and Gmail (Luma invites, past sign-ups) for your interests and busy slots.<span class="tag co">Composio</span></p></div>
+<div class="step"><div class="num">2</div><p><b>Find and verify.</b> Searches, then confirms each date on the event's own page. Unconfirmed events are dropped.<span class="tag pa">Parallel</span></p></div>
+<div class="step"><div class="num">3</div><p><b>Rank by people.</b> Scores events by who is there against your goal. Anti-FOMO: it keeps your budget and gives a reason for every skip.<span class="tag pa">Parallel</span></p></div>
+<div class="step"><div class="num">4</div><p><b>Act.</b> Adds <code>[Suggested]</code> holds to your Calendar and writes a cited Doc. Prep card and an unsent Gmail draft per person.<span class="tag co">Composio</span></p></div>
+<div class="step"><div class="num">5</div><p><b>Hackathons get a brief.</b> Judges, sponsors and past winners, with sources. Runs every Monday and from Telegram.<span class="tag cl">Cline</span></p></div>
+<div class="foot"><span>FOMO Bot</span><span>2 / 5</span></div>
+</section>
+
+<section>
+<div class="eyebrow">How we used the sponsors</div>
+<h2>No app code. The agent is Cline, with the right tool for each job.</h2>
+<div class="grid g3">
+<div class="col" style="--c:var(--cline)"><h3>Cline</h3><div class="role">The runtime</div>
+<ul><li>One skill file is the whole product</li><li>Setup is one script</li><li><code>cline schedule</code> runs it every Monday</li><li><code>cline connect telegram</code> puts it on your phone</li></ul></div>
+<div class="col" style="--c:var(--par)"><h3>Parallel</h3><div class="role">Search and deep research</div>
+<ul><li>Search and fetch verify every event date</li><li>Deep research on judges, sponsors and people (about 4.5 min a run)</li><li>Every claim in the Doc has a source link</li></ul></div>
+<div class="col" style="--c:var(--comp)"><h3>Composio</h3><div class="role">Real actions, safely</div>
+<ul><li>Picks the right tool: Calendar, Gmail, Docs</li><li>Holds with no attendees, no invites, no Meet links</li><li>Gmail drafts only. It can't send</li></ul></div>
 </div>
-<p class="foot">Built with Claude Sonnet 5.5 through Cline. Every claim in the Doc carries a source link.</p></section>
+<div class="foot"><span>FOMO Bot</span><span>3 / 5</span></div>
+</section>
 
-<section class="dark"><h2>Safe by design, open by default</h2>
-<ul>
-<li>Creates Docs, Calendar holds and Gmail <b>drafts</b> only. It never sends, deletes or forwards email and never invites anyone.</li>
-<li>Calendar holds use <code>send_updates: none</code>, no attendees and no Meet links.</li>
-<li>Event pages and emails are treated as untrusted data. Telegram is locked to one user ID.</li>
-<li>When something fails it says what failed and what it did instead. It never invents a date, venue or speaker.</li>
-<li><b>Simulated in the demo:</b> the busy blocks on the demo calendar (study group, family dinner, gym) were added by us. Everything else is a live run on real accounts.</li>
-<li><b>Next:</b> an event crawl route with travel times, and next-morning follow-up drafts.</li>
-</ul></section>
+<section>
+<div class="eyebrow">Trust</div>
+<h2>Bounded, honest, and open.</h2>
+<div class="ok">
+<div class="card"><h3>Bounded</h3><p>Creates Docs, Calendar holds and Gmail drafts only. Never sends, deletes or forwards email, and never invites anyone. Telegram is locked to one user.</p></div>
+<div class="card"><h3>Recovers from failure</h3><p>Luma page with no date? It searches the web, or drops the event. It never invents a date, venue or speaker, and says what it did instead.</p></div>
+<div class="card"><h3>Open and easy to run</h3><p>MIT licensed. Clone, run <code>./setup.sh</code>, then <code>cline "/fomo-bot ..."</code>. Run instructions are in the README.</p></div>
+<div class="card"><h3>What is simulated</h3><p>The busy blocks on the demo calendar (study group, family dinner, gym) were added by us. Everything else is a live run on real accounts.</p></div>
+</div>
+<p style="margin-top:22px;font-size:23px;color:var(--mute)"><b>Next:</b> an event crawl route with travel times, and next-morning follow-up drafts.</p>
+<div class="foot"><span>FOMO Bot</span><span>4 / 5</span></div>
+</section>
 </body></html>
