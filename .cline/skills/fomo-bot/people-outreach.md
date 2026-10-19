@@ -28,5 +28,14 @@
   - Then 4-6 sentences: cite the specific thing they shipped, one ask (15-minute coffee at the event), and 2 free slots from the Step 1 calendar data, signed with the user's first name.
   - Never send a draft. Never add anyone as a Calendar attendee. Get the user's own address with `~/.local/bin/composio execute GMAIL_GET_PROFILE -d '{}'` (the `emailAddress` field).
 - **B4 Add to the Doc** under `## People`: per pick, the people with sources; the prep card; the list of drafts with each one's route, email status (found, company or guessed) and the other contact links. Rewrite the whole Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN` (the existing Markdown plus the new section, so nothing is lost); if that fails, append with `GOOGLEDOCS_INSERT_TEXT_ACTION` and `"append_to_end":true`. Check inputs with `~/.local/bin/composio tools info <SLUG>`. **No Google Docs connected** (the user may choose not to link it): append the same section to the local digest file `digests/<YYYY-MM-DD>.md` in the repo folder instead, and give the user its path. Write nowhere else on disk.
+- **B5 Contact cards in the reply.** End your reply to the user (this is what they see in Telegram or the terminal) with one card per outreach person:
+  ```
+  <Name>, <role> at <company>, <event>
+  Message: <the same short text as the draft>
+  Email: <address> (<found | company | GUESSED>) · mailto:<address>?subject=<url-encoded subject>&body=<url-encoded message>
+  X: <url>   LinkedIn: <url>   Website/contact form: <url>   GitHub: <url>   Booking: <url>
+  ```
+  Leave out any route you didn't find; never invent a handle. The user taps a link, pastes the message and sends it themselves.
+- **No automatic outreach.** Never send a DM, connection request, comment, mention or email on X, LinkedIn or any other site, even if a tool for it exists. Only give links and text.
 
 Not built yet: event crawl route with travel times, next-morning follow-up drafts.

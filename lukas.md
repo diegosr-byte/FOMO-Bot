@@ -46,6 +46,9 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] 8. **Email finding + labelled guess** (`people-outreach.md` B2.5). Searches the event page, the person's site, GitHub, talk pages and the company team page; then a published company address; last resort a guess from the company's email pattern, labelled GUESSED with its source. Every draft also lists all other public routes found (X, LinkedIn, website/contact form, GitHub, booking link), so there is always a way to reach them. Work emails only, max 4 searches and 4 fetches per person, never in To.
   - [ ] Tested: every draft's line 1 has a source URL; guesses say GUESSED; no gmail-style guess.
 
+- [x] 9. **Contact cards, no automatic outreach** (`people-outreach.md` B5). The bot's reply (Telegram or terminal) ends with one card per person: the message text, a `mailto:` link with subject and body filled in, and links to X, LinkedIn, website or contact form, GitHub and booking page. The user taps, pastes and sends. Automatic DMs on X or LinkedIn were dropped: LinkedIn bans automation, X DMs need a paid API, and it would break the never-send guardrail.
+  - [ ] Tested in Telegram: the cards appear, the links open the right profiles, the mailto link opens a filled-in email.
+
 **Outreach safety (decided: drafts, not sends).** Every draft is addressed to the user's own address, with the real recipient and route in the body. The user reviews and sends. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
 
 **Needs Diego (SKILL.md, CLAUDE.md are his):**
