@@ -10,7 +10,7 @@ Composio does not install on Windows, so on this PC run everything below from **
 - [x] Clone the repo and create `.env` (`cp .env.example .env`).
 - [x] Put YOUR OWN Parallel API key in `.env` (platform.parallel.ai; check it has Task API credits; never ask for Diego's key, never paste keys in chat), run `./setup.sh` and check `cline config mcp` lists `parallel-search` and `parallel-task` (the `cline mcp` command does not exist in this version). Key not yet confirmed by a real search.
 - [x] Install the Composio CLI (v0.4.5, inside Ubuntu) and `composio login` as lukaszm39@gmail.com (done with the key in `.env`; plain `composio login` also works). Always call it as `~/.local/bin/composio`.
-- [ ] Link the Google apps (Gmail and Calendar linked; **Docs still missing**), one command each (it takes one app at a time): `~/.local/bin/composio link gmail`, then `googlecalendar`, then `googledocs`. Approve each link in the browser; add `--no-browser` to print the URL instead.
+- [x] Link the Google apps: Gmail and Calendar linked. **Docs deliberately not linked** (your choice); the digest goes to a local file `digests/<date>.md` instead (gitignored). Linking was, one command each (it takes one app at a time): `~/.local/bin/composio link gmail`, then `googlecalendar`, then `googledocs`. Approve each link in the browser; add `--no-browser` to print the URL instead.
 - [x] Install Node and Cline 3.0.73 (inside Ubuntu).
 - [ ] Log in to Cline: `cline auth`.
 - [ ] Run from the repo root (skills are workspace-scoped). Confirm Cline can use `web_search` and `~/.local/bin/composio link gmail --list`.
@@ -47,6 +47,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] Goal in Step 1, `people-outreach.md` called from Step 4 and Step 7 (done by Diego).
 - [x] Demo rule: drafts go to the user's own address (done by Diego).
 - [x] `CLAUDE.md` guardrail updated to include Gmail drafts (done by Diego, ~12:50 PM).
+- [ ] SKILL.md Step 5 and the guardrail: when Google Docs isn't connected, write the digest to `digests/<YYYY-MM-DD>.md` in the repo folder instead (and allow that one local file in the guardrail). `people-outreach.md` already does this; `.gitignore` has `digests/`. Needed so Lukas can test without Docs; the demo still uses a real Doc on Diego's account.
 
 **Pitch lines:** you are a visitor in SF this week, so you are the real user. Show one moment where Cline wrote a piece live (suggest: the outreach template). Tie-breakers: Parallel = people research, Composio = Calendar + Gmail drafts, Cline = built with it.
 
