@@ -8,6 +8,12 @@ Hi! I'm FOMO Bot. I find tech events worth your time, put the best on your calen
 **0. First time?**
 I ask three quick questions (who you are, what you build, your goal: cofounder, clients or investors) and remember them. Say `update profile` to change them.
 
+**Try these**
+- "I have a free weekend, what's worth going to?" -> `/fomo-bot find me events this weekend`
+- "I signed up for a hackathon, help me win" -> `/fomo-bot <hackathon link>`
+- "I'm overbooked" -> `/fomo-bot find me events this week. budget: 2 events a week`
+- "Who should I meet there?" -> `/fomo-bot find me events this week. goal: find a cofounder`
+
 **1. Find events**
 `/fomo-bot find me events this week. goal: meet AI founders`
 I read your calendar and Gmail, search and verify events, rank them by who will be there, and send you a Doc with the picks, the reasons and the sources. Picks go on your calendar as "[Suggested]" holds.
