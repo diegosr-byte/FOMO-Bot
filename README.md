@@ -1,50 +1,41 @@
 # FOMO Bot
 
-**A personal agent that finds the tech events worth your time.** It reads your Google Calendar and your Luma invites, searches for upcoming hackathons, talks and conferences that fit you, adds the best to your calendar and writes you a cited digest in Google Docs. When the top pick is a hackathon, it also researches the judges and sponsors and writes a strategy brief.
+**A personal agent that finds the tech events worth your time, and tells you which ones to skip.**
 
-## The key idea: rank events by the people, not the topic
-Most event finders match topics. FOMO Bot matches your **goal** ("find a technical cofounder", "meet proptech investors", "get a job in tech"). _(In progress, built at the hackathon.)_
+Built at the Cline × Parallel × Composio Hackathon (Open Source AI Week, San Francisco, Oct 19 2026). This repo is archived: it's a snapshot of what we built in one afternoon.
 
-1. **Research the people.** For each top event, Parallel researches the hosts, speakers, sponsors and the public guest list: role, what they recently shipped or posted, with sources.
-2. **Pick with a reason.** "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Every skipped event gets a one-line reason.
-3. **Prep card per person.** 3 people to find, what each recently shipped, one smart question each, and a 20-second intro tailored to that room.
-4. **Outreach to set up meetings.** The agent writes a personal meeting request to each person, citing something they actually shipped and proposing slots from your free calendar time. It is saved as a Gmail **draft** for you to review and send, never sent automatically. It looks hard for the person's public email; if there is none, it suggests a clearly labelled best guess from the company's email pattern, and lists every other public way to reach them (X, LinkedIn, website, GitHub, booking link). The message is short enough to paste as a DM. In Telegram you get a contact card per person with one-tap links (a pre-filled email, X, LinkedIn); the bot never messages anyone itself.
+[Deck](docs/FOMO-Bot-deck.pdf) · [Personas](docs/personas.md)
 
-5. **Anti-FOMO: the agent says no for you.** You set an energy budget, for example "max 3 events a week". The agent decides which events deserve a spot on your calendar, skips the rest and gives a one-line reason for each skip ("skipped X: you're busy Thursday, and Y has the same people"). You don't have to keep track of everything or worry about missing out, because the agent already made the choice.
+## What it does
+FOMO Bot reads your Google Calendar and Luma invites, searches for upcoming hackathons, talks and conferences, and ranks them against your **goal** ("meet AI founders", "find a technical cofounder", "get a job in tech"). It then:
 
-Next on the list: an event crawl route with real travel times, and next-morning follow-up drafts ("who did you meet?").
-
-Built in the open at the Cline × Parallel × Composio Hackathon (Open Source AI Week, SF, Oct 19 2026).
-
-> Demo video: _TODO_
-
-## Why
-In three weeks I entered three hackathons. Each time I spent hours on prep: reading the event page, finding out who the judges were, checking every sponsor's docs. And I only found the events by luck, through a friend or a random invite. Calendar apps don't help, since they only show events you already know about. FOMO Bot does the finding and the prep for you, and it says no to the events that don't fit your week.
-
-## Who it's for
-Founders looking for a cofounder, clients or investors; engineers looking for a job; anyone with too many events and too little time. See the four personas in [docs/personas.md](docs/personas.md).
+- **Picks by people, not topic.** Parallel researches the hosts, speakers, sponsors and public guest list. Every pick gets a reason ("the Parallel founder is judging"), and every skipped event gets a one-line reason.
+- **Calendars the best ones.** `[Suggested]` holds on your Google Calendar that never overlap something you already have.
+- **Writes a cited digest** as a Google Doc, with prep cards: who to find, what they recently shipped, one question to ask and a 20-second intro.
+- **Drafts outreach.** A short meeting request per person as a Gmail draft addressed to you, ready to review and paste. It never sends anything.
+- **Says no for you (anti-FOMO).** Set a budget such as "max 3 events a week" and the agent keeps only that many.
+- **Preps hackathons.** Given a hackathon URL, it researches the judges and sponsors and writes a strategy brief.
+- **Runs on a schedule and from Telegram.** A fresh digest every Monday, or message the bot from your phone.
 
 ## How it works
-There's no app code. The agent is [Cline](https://cline.bot) running one skill:
+There's no app code. The agent is [Cline](https://cline.bot) running one skill (`.cline/skills/fomo-bot/SKILL.md`):
 
 ```
 "find me events" / event URL / Gmail invite
         │
         ▼
-Cline CLI + skill (.cline/skills/fomo-bot/SKILL.md)
-        ├── Composio CLI: read Google Calendar + Gmail Luma invites (who you are, when you're free)
+Cline CLI + skill
+        ├── Composio: read Google Calendar + Gmail Luma invites (who you are, when you're free)
         ├── Parallel Search MCP: find and verify upcoming events
-        ├── Parallel Task MCP: deep, cited research on hackathon judges and sponsors
-        └── Composio CLI: Google Calendar (suggested events), Google Docs (digest + brief)
+        ├── Parallel Task MCP: deep, cited research on people, judges and sponsors
+        └── Composio: Google Calendar (suggested events), Google Docs (digest), Gmail (drafts)
         │
         ▼
-Ranked picks on your calendar + a Google Doc digest
+Ranked picks on your calendar + a Google Doc digest + outreach drafts
 ```
 
-A weekly `cline schedule` run produces a fresh digest every Monday.
-
 ## Guardrails
-The agent creates Docs, Calendar events and Gmail drafts only. It never sends, deletes or forwards email, never adds attendees, and never notifies anyone, even in scheduled runs. Outreach stays a draft until you press send.
+The agent creates Docs, Calendar events and Gmail drafts only. It never sends, deletes or forwards email, never adds attendees and never notifies anyone, including in scheduled runs. It never reads or prints API keys.
 
 ## Setup
 Requires Node, a [Cline](https://cline.bot) account, a [Parallel](https://platform.parallel.ai) API key and a [Composio](https://composio.dev) account.
@@ -59,28 +50,28 @@ cp .env.example .env    # add your PARALLEL_API_KEY
 ```
 
 ## Usage
-Run from this folder (skills are workspace-scoped).
+Run from this folder (skills are workspace-scoped). The `/fomo-bot` prefix is required.
+
 ```sh
 cline "/fomo-bot find me events in the next 3 weeks. goal: meet AI founders and builders"
-cline "/fomo-bot https://luma.com/<event>"      # a specific event; hackathons also get a judges/sponsors brief
+cline "/fomo-bot https://luma.com/<event>"      # one event; hackathons also get a judges/sponsors brief
 cline "/fomo-bot scan my inbox"                 # list your Luma invites and inferred interests
 ```
-The `/fomo-bot` prefix is required; plain prompts don't load the skill.
 
-**Every Monday at 8 AM:**
+Every Monday at 8 AM:
 ```sh
 cline schedule create fomo-monday --cron "0 8 * * 1" --workspace "$PWD" \
   --prompt "/fomo-bot find me events in the next 3 weeks. goal: meet AI founders and builders"
 ```
 
-**From your phone (Telegram):** create a bot with @BotFather, then run it locked to your own Telegram user ID:
+From Telegram: create a bot with @BotFather, then lock it to your own user ID:
 ```sh
 cline connect telegram -k <BOT_TOKEN> --allowed-user-id <YOUR_ID> --cwd "$PWD"
 ```
-Then message the bot `/fomo-bot find me events this week`.
+Message the bot `/fomo-bot help` for the manual.
 
-## Built with
-[Cline](https://cline.bot) · [Parallel](https://parallel.ai) · [Composio](https://composio.dev)
+## Team
+Diego (@diegosr-byte) and Lukas.
 
 ## License
 MIT
