@@ -3,25 +3,30 @@
 Read `CLAUDE.md` first. Deadline: **submit at 3:15 PM PT**, feature freeze at **2:30**. Diego is non-technical: explain decisions in a line and give exact Terminal commands for anything interactive.
 
 ## You own (only you edit these)
-- `.cline/skills/fomo-bot/SKILL.md`: the main flow (calendar + Luma invites, then find, verify, rank, then Calendar events + Doc digest)
-- `.cline/skills/fomo-bot/hackathon-prep.md`: the hackathon branch (stretch)
-- `setup.sh`, `CLAUDE.md`, this file
+- `.cline/skills/fomo-bot/SKILL.md`: the main flow (calendar + Gmail, then find, verify, rank, then Calendar events + Doc digest)
+- `setup.sh`, `CLAUDE.md`, `diego.md`
+
+Lukas owns `hackathon-prep.md`, `inbox-mode.md`, `README.md` and the schedule. See `lukas.md`.
 
 ## Tasks, in order
-1. **Get the flow working end to end** on Diego's real Google Calendar: `cline "/fomo-bot find me events in the next 3 weeks"`, run from the repo root. Iterate on `SKILL.md` until the picks are real, the dates are verified, and the Calendar events and Doc look good. Use `web_search`/`web_fetch` only; no deep research yet.
-2. **Make the personalization visible** (this is the demo's wow moment). The Doc should say why each pick fits THIS user, citing a calendar event or invite, and should show a skipped event with its conflict ("skipped X: you're busy Thursday").
-3. **Merge Lukas's `inbox-mode.md`** into Step 1 of `SKILL.md` once he pushes it. Keep the file short.
-4. **Fix the invocation.** Find out whether `cline "/fomo-bot ..."` loads the skill or whether plain `cline "find me events"` does. Tell Lukas so he can fix the README.
-5. **Hackathon branch** (only if step 1-2 work by ~1:45): fill in `hackathon-prep.md`. Deep research takes ~4.5 min and returns ~220k chars, so ask for a ≤600-word fixed-format brief. Save one finished run as a backup for the demo.
-6. **2:30 freeze.** Save a backup run of the main flow. Help Lukas record the demo.
+1. **Make the main flow good** on Diego's real accounts: `cline "/fomo-bot find me events in the next 3 weeks"`, run from the repo root. A first run works end to end. Now improve it: picks are real and verified, interests come from Gmail history, no sold-out or already-started events, missing start times handled.
+2. **Seed the demo.** Diego's Google Calendar is empty, so add 2-3 events that collide with good picks (for example a Thursday-evening block). Then the Doc can show "skipped X: you're busy Thursday". Delete the old `[Suggested]` test events first.
+3. **Merge Lukas's `inbox-mode.md`** into Step 1 of `SKILL.md` as soon as he pushes it. Keep it short.
+4. **Fix the invocation.** Find out whether `cline "/fomo-bot ..."` loads the skill or plain `cline "find me events"` does. Tell Lukas so he can fix the README.
+5. **Wire in Lukas's `hackathon-prep.md`** (Step 6 of `SKILL.md`) once he pushes it, and test the full path on a hackathon pick.
+6. **By 2:30, freeze.** Save a backup run of the main flow (the Doc and Calendar links), and do a dry run of the demo.
+
+## Demo video, 2:30-3:00, together with Lukas
+Diego drives the live run and narrates the personal part (calendar, conflict, picks). Lukas narrates the hackathon brief and the weekly schedule, and records. Use a saved run if the live one is slow.
 
 ## Don't
-- Don't edit Lukas's files (`lukas.md`, `inbox-mode.md`, `README.md`).
+- Don't edit Lukas's files (`lukas.md`, `inbox-mode.md`, `hackathon-prep.md`, `README.md`).
 - Never commit `.env` or `PREP.md`. Never print API keys.
 - The agent creates Docs and Calendar events only. It never sends, deletes or forwards email, never adds attendees, and always uses `send_updates:none`.
 
 ## Interface with Lukas
-`inbox-mode.md` must tell the agent how to turn Luma invite emails into a list of `{name, date, url, host}` plus 3-5 inferred interests. `SKILL.md` Step 1 calls it.
+- `inbox-mode.md` turns Luma invite emails into a list of `{name, date, url, host}` plus 3-5 inferred interests. `SKILL.md` Step 1 calls it.
+- `hackathon-prep.md` takes a hackathon URL and returns a short cited brief to append to the Doc. `SKILL.md` Step 6 calls it.
 
 ## Git
 Small commits. `git pull --rebase` before every push. Only touch your own files.
