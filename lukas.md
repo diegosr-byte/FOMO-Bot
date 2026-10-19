@@ -27,23 +27,26 @@ Diego owns `SKILL.md`, `setup.sh` and `CLAUDE.md`. See `diego.md`.
 ## Plan update: rank by the people + outreach (the wow factor)
 Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches WHO is at each event, scores events against the user's goal, and drafts meeting requests to the right people. Demo on real SF events (Cerebral Valley + Luma), not mocks.
 
-**Build order** (stop at any step and still have a demo). All steps are written into `people-outreach.md` but none is tested yet:
-- [x] 1. **Goal input.** The user states one goal ("find a technical cofounder", "meet proptech investors"). Ask once; if the run is headless, read it from a `goal:` line in the prompt. Put it at the top of the Doc. Written as step 0 of `people-outreach.md` (done). Still open: Diego pastes the hook below into `SKILL.md`, and a test.
-  - [ ] Diego pastes into `SKILL.md`: at the end of Step 1 add "Goal: use a `goal: <text>` line from the prompt; if none and the run is interactive, ask the user once for their goal for these events (see step 0 of `people-outreach.md`). Never ask in a scheduled or headless run." At Step 5, Doc: "start the Doc with a line `Goal: <goal>` (or `No goal given, so events are ranked by topic, not by people`)."
-  - [ ] Test: `cline "/fomo-bot find me events this month. goal: find a technical cofounder"` and check the Doc starts with the goal line.
-- [ ] 2. **People research** (`people-outreach.md`, ~40 min). For the top 5 candidates only: `web_search` the hosts, speakers, sponsors and public guest list. Per person: role, what they recently shipped or posted, source link. Use `createDeepResearch` for the #1 pick only (4.5 min, 600 words max, same rule as the hackathon brief).
-- [ ] 3. **Score and explain.** Score each event against the goal by who is there, not the topic. One-line reason in the Doc: "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Add one-line skip reasons for the rest (cheap anti-FOMO, no extra build).
-- [ ] 4. **Prep card per person** (Doc section, ~20 min): 3 people to find, what each recently shipped, one smart question each, and a 20-second intro tailored to that room.
-- [ ] 5. **Outreach drafts** (~30 min). For each of the 3 people: a short, personal meeting request that cites the specific thing they shipped, one concrete ask (15-min coffee at the event), and the user's proposed slots taken from free Calendar time. Contact route, in order: a public email found on their site or the event page, otherwise a LinkedIn or X message written into the Doc for the user to paste. **Never guess an email address.**
-- [ ] 6. **Stretch, only if time:** event crawl route with travel times (idea 3), post-event follow-up drafts (idea 5).
+**Build order** (stop at any step and still have a demo). Items 1-5 are written into `people-outreach.md` (Part A ranks, from SKILL.md Step 4; Part B does prep and drafts, from Step 7). None is tested yet:
+- [x] 1. **Goal input.** Uses a `goal:` line, else asks once (interactive), else infers one in headless runs. The Doc starts with `Goal: ...`. SKILL.md Step 1 hook: done by Diego.
+  - [ ] Tested: the Doc starts with the goal line.
+- [x] 2. **People research.** Top 5 events, at most 3 people each, at most 12 `web_search` calls. Deep research on the #1 pick only, started early and collected in Part B.
+  - [ ] Tested: each person has a role, a recent thing shipped and a source link.
+- [x] 3. **Score and explain.** 1-5 by who is there against the goal, weekly limit (default 3, or `limit:`), one line per pick and per skip.
+  - [ ] Tested: every pick and every skip has a reason; no more picks than the limit.
+- [x] 4. **Prep card** for the #1 pick: 3 people, what each shipped, one question each, a 20-second intro.
+  - [ ] Tested.
+- [x] 5. **Outreach drafts**, max 3, via `GMAIL_CREATE_EMAIL_DRAFT` (slug confirmed) to the user's own address (from `GMAIL_GET_PROFILE`). Body line 1 says where to send it (public email with source, or a LinkedIn/X message). Never guesses an email. Added to the Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN`.
+  - [ ] Tested: drafts are in Gmail, addressed to you, nothing sent.
+- [ ] 6. **Stretch: skipped.** Event crawl route and follow-up drafts are not built (freeze is 2:50). The skill file says so.
 
-**Outreach safety (decided: drafts, not sends).** The agent saves outreach as Gmail **drafts** (find the slug with `~/.local/bin/composio search "create gmail draft"`, likely `GMAIL_CREATE_EMAIL_DRAFT`) and lists them in the Doc. The user reviews and presses send. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check, and it breaks the guardrail. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
-- [ ] Confirm the real draft slug with `composio search` and test one draft to your own address.
+**Outreach safety (decided: drafts, not sends).** Every draft is addressed to the user's own address, with the real recipient and route in the body. The user reviews and sends. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
 
 **Needs Diego (SKILL.md, CLAUDE.md are his):**
-- [ ] Amend the guardrail from "Docs and Calendar events only" to "Docs, Calendar events and Gmail **drafts**; still never sends, deletes or forwards email". Without this the draft step breaks the rules in `CLAUDE.md`, `diego.md`, `README.md` and the SKILL.md guardrail.
-- [ ] Add the goal question to Step 1, call `people-outreach.md` after Step 4 (rank) for the top 5, and add a Step 7 hook for the drafts.
-- [ ] Pick the rule for the demo: 3 real recipients are risky on stage, so draft to the user's own address as a stand-in or blur the recipient in the video.
+- [x] Guardrail widened to Docs, Calendar events and Gmail drafts (SKILL.md; done by Diego).
+- [x] Goal in Step 1, `people-outreach.md` called from Step 4 and Step 7 (done by Diego).
+- [x] Demo rule: drafts go to the user's own address (done by Diego).
+- [x] `CLAUDE.md` guardrail updated to include Gmail drafts (done by Diego, ~12:50 PM).
 
 **Pitch lines:** you are a visitor in SF this week, so you are the real user. Show one moment where Cline wrote a piece live (suggest: the outreach template). Tie-breakers: Parallel = people research, Composio = Calendar + Gmail drafts, Cline = built with it.
 
@@ -81,7 +84,7 @@ Lukas fills in the submission form and Diego checks it. Have the repo link and t
 ## Don't
 - Don't edit `SKILL.md`, `setup.sh` or `CLAUDE.md`. Ask Diego instead.
 - Never commit `.env`. Never print API keys.
-- The agent creates Docs, Calendar events and Gmail drafts only (draft rule pending Diego's OK, see the plan update). It never sends, deletes or forwards email, never adds attendees, and always uses `send_updates:none`.
+- The agent creates Docs, Calendar events and Gmail drafts only (max 3 drafts per run, addressed to the user's own address; approved by Diego). It never sends, deletes or forwards email, never adds attendees, and always uses `send_updates:none`.
 
 ## Git
 Small commits. `git pull --rebase` before every push. Only touch your own files.
