@@ -1,9 +1,9 @@
 # Lukas's workstream (for Lukas's Claude Code)
 
-Read `CLAUDE.md` and `README.md` first. Deadline: **submit at 3:15 PM PT**, feature freeze at **2:30**.
+Read `CLAUDE.md` and `README.md` first. Deadline: **submit at 3:15 PM PT**, feature freeze at **2:50** (moved by Diego).
 
 ## Setup first (about 10 min)
-1. Clone the repo, then `cp .env.example .env` and put the Parallel API key in `.env` (get it from Diego in person, never in chat), then `./setup.sh`.
+1. Clone the repo, then `cp .env.example .env` and put YOUR OWN Parallel API key in `.env` (create it at platform.parallel.ai and check it has Task API credits; never ask for Diego's key, never paste keys in chat), then `./setup.sh`.
 2. Install and log in to the Composio CLI, then `composio login` and `composio link gmail googlecalendar googledocs` with YOUR Google account. Always call it as `~/.local/bin/composio`.
 3. Install Cline and log in: `npm i -g cline && cline auth`.
 4. Run from the repo root (skills are workspace-scoped). Confirm Cline can use `web_search` and `composio connections list`.
@@ -41,12 +41,12 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 1. **`inbox-mode.md`** (about 20 min). Write how the agent turns Luma invite emails into a list of `{name, date, url, host}` plus 3-5 inferred interests. Test with `~/.local/bin/composio execute GMAIL_FETCH_EMAILS -d '{"query":"from:luma-mail.com","max_results":10,"include_payload":false}'` on your own inbox. Keep it short, since the agent reads it on every run. Push as soon as it works so Diego can merge it into Step 1.
 2. **`hackathon-prep.md`** (until about 1:45). Fill in the stub. For a hackathon URL: start `createDeepResearch` (Parallel Task MCP) on the judges, each sponsor's API and past winners. Ask for a short fixed-format brief, 600 words max, with cited sources. A run takes about 4.5 minutes and returns about 220k chars, so never paste the raw result. While it runs, `web_search` each sponsor's docs. Then poll `getStatus` and `getResultMarkdown`. The output is: 3 idea angles aimed at these judges, the sponsor stack, a setup checklist and demo tips, each with a source link. Test on today's hackathon, `https://luma.com/m8euvq9n`, and save one finished run as a backup. Push when it works.
 3. **Weekly schedule** (by 2:15). Make `cline schedule create ... --workspace <repo folder>` run the skill every Monday. Check `cline schedule --help` for the syntax. Test with `cline schedule trigger <id>`. Scheduled runs auto-approve every tool call, so the guardrail below matters.
-4. **README** (by 2:30). Fill in the "Why" paragraph and fix the usage line once Diego confirms the invocation. Add the schedule command.
+4. **README** (by 2:50). Fill in the "Why" paragraph and fix the usage line once Diego confirms the invocation. Add the schedule command.
 
-## Demo video, 2:30-3:00, together with Diego
-Lukas records and narrates the hackathon brief and the weekly schedule. Diego drives the live run and narrates the calendar and picks. 60 seconds total: the pain, the live run, the Doc and Calendar events, the hackathon brief, then "fully open, install it with one script". Use a saved run if the live one is slow.
+## Demo video, 2:50-3:05, together with Diego
+Lukas records and narrates the hackathon brief and the weekly schedule. Diego drives the live run and narrates the calendar and picks. The limit is 2 minutes; aim for 1:50. Shape: the pain (0:15), the live run sped up (0:30), the Doc and Calendar events (0:30), the people pick, a prep card and the unsent Gmail draft (0:25), the hackathon brief and the close "fully open, install it with one script" (0:15). Use a saved run if the live one is slow.
 
-Add to the video: the goal, the people-based pick with its reason, one prep card, and the outreach draft in Gmail (60 seconds is tight, so cut the schedule to one sentence).
+Add to the video: the goal, the people-based pick with its reason, one prep card, and the outreach draft in Gmail (keep the schedule to one sentence).
 
 ## Submit at 3:15 sharp
 Lukas fills in the submission form and Diego checks it. Have the repo link and the video ready by 3:05.
