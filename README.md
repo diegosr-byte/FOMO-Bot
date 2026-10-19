@@ -21,6 +21,9 @@ Built in the open at the Cline × Parallel × Composio Hackathon (Open Source AI
 ## Why
 In three weeks I entered three hackathons. Each time I spent hours on prep: reading the event page, finding out who the judges were, checking every sponsor's docs. And I only found the events by luck, through a friend or a random invite. Calendar apps don't help, since they only show events you already know about. FOMO Bot does the finding and the prep for you, and it says no to the events that don't fit your week.
 
+## Who it's for
+Founders looking for a cofounder, clients or investors; engineers looking for a job; anyone with too many events and too little time. See the five personas in [docs/personas.md](docs/personas.md).
+
 ## How it works
 There's no app code. The agent is [Cline](https://cline.bot) running one skill:
 
