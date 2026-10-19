@@ -10,7 +10,7 @@ Composio does not install on Windows, so on this PC run everything below from **
 - [x] Clone the repo and create `.env` (`cp .env.example .env`).
 - [x] Put YOUR OWN Parallel API key in `.env` (platform.parallel.ai; check it has Task API credits; never ask for Diego's key, never paste keys in chat), run `./setup.sh` and check `cline config mcp` lists `parallel-search` and `parallel-task` (the `cline mcp` command does not exist in this version). Key not yet confirmed by a real search.
 - [x] Install the Composio CLI (v0.4.5, inside Ubuntu) and `composio login` as lukaszm39@gmail.com (done with the key in `.env`; plain `composio login` also works). Always call it as `~/.local/bin/composio`.
-- [ ] Link the Google apps, one command each (it takes one app at a time): `~/.local/bin/composio link gmail`, then `googlecalendar`, then `googledocs`. Approve each link in the browser; add `--no-browser` to print the URL instead.
+- [ ] Link the Google apps (Gmail and Calendar linked; **Docs still missing**), one command each (it takes one app at a time): `~/.local/bin/composio link gmail`, then `googlecalendar`, then `googledocs`. Approve each link in the browser; add `--no-browser` to print the URL instead.
 - [x] Install Node and Cline 3.0.73 (inside Ubuntu).
 - [ ] Log in to Cline: `cline auth`.
 - [ ] Run from the repo root (skills are workspace-scoped). Confirm Cline can use `web_search` and `~/.local/bin/composio link gmail --list`.
@@ -54,7 +54,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 1. **`inbox-mode.md`** (about 20 min). Write how the agent turns Luma invite emails into a list of `{name, date, url, host}` plus 3-5 inferred interests. Keep it short, since the agent reads it on every run.
    - [x] Written and pushed.
    - [ ] Tested with `~/.local/bin/composio execute GMAIL_FETCH_EMAILS -d '{"query":"from:luma-mail.com","max_results":10,"include_payload":false}'` on your own inbox.
-   - [ ] Diego merged it into Step 1 of `SKILL.md`.
+   - [x] Diego merged it into Step 1 of `SKILL.md` (Step 1 points to it).
 2. **`hackathon-prep.md`** (until about 1:45). For a hackathon URL: start `createDeepResearch` (Parallel Task MCP) on the judges, each sponsor's API and past winners. Ask for a short fixed-format brief, 600 words max, with cited sources. A run takes about 4.5 minutes and returns about 220k chars, so never paste the raw result. While it runs, `web_search` each sponsor's docs. Then poll `getStatus` and `getResultMarkdown`. The output is: 3 idea angles aimed at these judges, the sponsor stack, a setup checklist and demo tips, each with a source link.
    - [x] Written and pushed.
    - [ ] Tested on today's hackathon, `https://luma.com/m8euvq9n`.
