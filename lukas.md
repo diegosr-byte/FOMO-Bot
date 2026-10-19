@@ -36,12 +36,15 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
   - [ ] Tested: every pick and every skip has a reason; no more picks than the limit.
 - [x] 4. **Prep card** for the #1 pick: 3 people, what each shipped, one question each, a 20-second intro.
   - [ ] Tested.
-- [x] 5. **Outreach drafts**, max 3, via `GMAIL_CREATE_EMAIL_DRAFT` (slug confirmed) to the user's own address (from `GMAIL_GET_PROFILE`). Body line 1 says where to send it (public email with source, or a LinkedIn/X message). Never guesses an email. Added to the Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN`.
+- [x] 5. **Outreach drafts**, max 3, via `GMAIL_CREATE_EMAIL_DRAFT` (slug confirmed) to the user's own address (from `GMAIL_GET_PROFILE`). Body line 1 says where to send it: a found email, a company address, a labelled GUESSED email, or a LinkedIn/X message. Never puts a found or guessed address in To. Added to the Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN`.
   - [ ] Tested: drafts are in Gmail, addressed to you, nothing sent.
 - [ ] 6. **Stretch: skipped.** Event crawl route and follow-up drafts are not built (freeze is 2:50). The skill file says so.
 
 - [x] 7. **Onboarding profile** (`.clinerules/onboarding.md`, loaded in every Cline session, so it also works in Telegram). On the first message the bot asks: who are you, what are you building, and your goal (cofounder, clients or investors). Saved to `profile.md` (gitignored). `people-outreach.md` uses the profile goal when there is no `goal:` line.
   - [ ] Tested in Telegram: send "hi", answer the 3 questions, check `profile.md` exists; send "hi" again and it greets you by name.
+
+- [x] 8. **Email finding + labelled guess** (`people-outreach.md` B2.5). Searches the event page, the person's site, GitHub, talk pages and the company team page; then a published company address; last resort a guess from the company's email pattern, labelled GUESSED with its source. Work emails only, max 4 searches and 4 fetches per person, never in To.
+  - [ ] Tested: every draft's line 1 has a source URL; guesses say GUESSED; no gmail-style guess.
 
 **Outreach safety (decided: drafts, not sends).** Every draft is addressed to the user's own address, with the real recipient and route in the body. The user reviews and sends. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
 
@@ -50,6 +53,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] Goal in Step 1, `people-outreach.md` called from Step 4 and Step 7 (done by Diego).
 - [x] Demo rule: drafts go to the user's own address (done by Diego).
 - [x] `CLAUDE.md` guardrail updated to include Gmail drafts (done by Diego, ~12:50 PM).
+- [ ] Allow labelled email guesses (needs Diego's OK). SKILL.md guardrail: replace "Never guess an email address." with "A guessed email may only appear in a draft's body, labelled GUESSED with its pattern source (see `people-outreach.md` B2.5); never put a guessed or found address in To." CLAUDE.md line 24: replace "never a guessed email" with "guessed emails only as labelled suggestions in the draft body". Until then the SKILL.md guardrail wins and the bot won't guess.
 - [ ] SKILL.md: Step 1 reads `profile.md` (City, Building, Goal) before inferring from the inbox; the guardrail allows writing `profile.md` (onboarding) and `digests/` in the repo folder. Both files are gitignored.
 - [ ] SKILL.md Step 5 and the guardrail: when Google Docs isn't connected, write the digest to `digests/<YYYY-MM-DD>.md` in the repo folder instead (and allow that one local file in the guardrail). `people-outreach.md` already does this; `.gitignore` has `digests/`. Needed so Lukas can test without Docs; the demo still uses a real Doc on Diego's account.
 
