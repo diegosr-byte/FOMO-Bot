@@ -40,6 +40,9 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
   - [ ] Tested: drafts are in Gmail, addressed to you, nothing sent.
 - [ ] 6. **Stretch: skipped.** Event crawl route and follow-up drafts are not built (freeze is 2:50). The skill file says so.
 
+- [x] 7. **Onboarding profile** (`.clinerules/onboarding.md`, loaded in every Cline session, so it also works in Telegram). On the first message the bot asks: who are you, what are you building, and your goal (cofounder, clients or investors). Saved to `profile.md` (gitignored). `people-outreach.md` uses the profile goal when there is no `goal:` line.
+  - [ ] Tested in Telegram: send "hi", answer the 3 questions, check `profile.md` exists; send "hi" again and it greets you by name.
+
 **Outreach safety (decided: drafts, not sends).** Every draft is addressed to the user's own address, with the real recipient and route in the body. The user reviews and sends. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
 
 **Needs Diego (SKILL.md, CLAUDE.md are his):**
@@ -47,6 +50,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] Goal in Step 1, `people-outreach.md` called from Step 4 and Step 7 (done by Diego).
 - [x] Demo rule: drafts go to the user's own address (done by Diego).
 - [x] `CLAUDE.md` guardrail updated to include Gmail drafts (done by Diego, ~12:50 PM).
+- [ ] SKILL.md: Step 1 reads `profile.md` (City, Building, Goal) before inferring from the inbox; the guardrail allows writing `profile.md` (onboarding) and `digests/` in the repo folder. Both files are gitignored.
 - [ ] SKILL.md Step 5 and the guardrail: when Google Docs isn't connected, write the digest to `digests/<YYYY-MM-DD>.md` in the repo folder instead (and allow that one local file in the guardrail). `people-outreach.md` already does this; `.gitignore` has `digests/`. Needed so Lukas can test without Docs; the demo still uses a real Doc on Diego's account.
 
 **Pitch lines:** you are a visitor in SF this week, so you are the real user. Show one moment where Cline wrote a piece live (suggest: the outreach template). Tie-breakers: Parallel = people research, Composio = Calendar + Gmail drafts, Cline = built with it.
