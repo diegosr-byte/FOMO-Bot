@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><title>FOMO Bot</title>
+<style>
+@page{size:13.333in 7.5in;margin:0}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Helvetica,Arial,sans-serif;color:#14181f}
+section{width:13.333in;height:7.5in;padding:.7in .9in;page-break-after:always;display:flex;flex-direction:column;justify-content:center;background:#fff;overflow:hidden}
+section.dark{background:#10141c;color:#f4f6fa}
+h1{font-size:68px;margin:0 0 14px;letter-spacing:-1.5px}
+h2{font-size:42px;margin:0 0 26px;letter-spacing:-.5px}
+p,li{font-size:25px;line-height:1.4}
+ul{padding-left:26px;margin:0}li{margin-bottom:10px}section.dark li{font-size:22px;line-height:1.35}
+.sub{font-size:30px;color:#9aa5b8}
+.tag{display:inline-block;background:#ff5a36;color:#fff;border-radius:8px;padding:4px 12px;font-size:20px;font-weight:700;margin-bottom:18px;width:fit-content}
+.row{display:flex;gap:22px;margin-top:10px}
+.box{flex:1;border:2px solid #d9dee8;border-radius:14px;padding:20px 22px}
+.box h3{margin:0 0 8px;font-size:26px}.box p{margin:0;font-size:21px}
+code{background:#eef1f6;padding:2px 8px;border-radius:6px;font-size:22px}
+section.dark code{background:#2a3242;color:#f4f6fa}
+.foot{margin-top:22px;font-size:20px;color:#6b7587}
+</style></head><body>
+
+<section class="dark"><span class="tag">Cline x Parallel x Composio Hackathon</span>
+<h1>FOMO Bot</h1>
+<p class="sub">A personal agent that finds the tech events worth your time, says no to the rest, and helps you meet the right people.</p>
+<p class="foot">Open source (MIT) &middot; github.com/diegosr-byte/FOMO-Bot &middot; Diego &amp; Lukas</p></section>
+
+<section><h2>The problem, and who it helps</h2>
+<ul>
+<li>Three hackathons in three weeks. Each one meant hours reading the event page, finding out who the judges are, and checking every sponsor's docs.</li>
+<li>Most events are found by luck, through a friend or a random invite.</li>
+<li>Event lists match topics. They don't know your calendar, your history or your goal, so everything looks worth going to.</li>
+<li><b>For:</b> students, founders and builders in busy tech scenes like SF, who want the right rooms without the overload.</li>
+</ul></section>
+
+<section><h2>What it does</h2>
+<div class="row">
+<div class="box"><h3>1. Learn you</h3><p>Reads your Google Calendar and Gmail (Luma invites, past sign-ups) to infer interests and busy slots.</p></div>
+<div class="box"><h3>2. Find and verify</h3><p>Searches for upcoming events and confirms each date and time on the event's own page. Unconfirmed events are dropped.</p></div>
+<div class="box"><h3>3. Rank by people</h3><p>Scores events by who is there against your goal, and says no for you (anti-FOMO budget).</p></div>
+</div>
+<div class="row">
+<div class="box"><h3>4. Act</h3><p>Adds <code>[Suggested]</code> holds to Calendar and writes a cited Google Doc digest.</p></div>
+<div class="box"><h3>5. Prep and reach out</h3><p>Prep card per person and an unsent Gmail draft. For hackathons: a judges, sponsors and past-winners brief.</p></div>
+<div class="box"><h3>6. Always on</h3><p>Runs every Monday, and from your phone through Telegram.</p></div>
+</div></section>
+
+<section><h2>How it works: no app code</h2>
+<p>The agent is <b>Cline</b> running one skill (<code>.cline/skills/fomo-bot/</code>). Install it with one script.</p>
+<div class="row">
+<div class="box"><h3>Cline</h3><p>The runtime: the skill, <code>cline schedule</code> for Mondays, <code>cline connect telegram</code> for chat.</p></div>
+<div class="box"><h3>Parallel</h3><p>Search and fetch to find and verify events. Deep research on judges, sponsors and people, with citations.</p></div>
+<div class="box"><h3>Composio</h3><p>Picks the right tool and acts: Google Calendar, Gmail drafts and Google Docs.</p></div>
+</div>
+<p class="foot">Built with Claude Sonnet 5.5 through Cline. Every claim in the Doc carries a source link.</p></section>
+
+<section class="dark"><h2>Safe by design, open by default</h2>
+<ul>
+<li>Creates Docs, Calendar holds and Gmail <b>drafts</b> only. It never sends, deletes or forwards email and never invites anyone.</li>
+<li>Calendar holds use <code>send_updates: none</code>, no attendees and no Meet links.</li>
+<li>Event pages and emails are treated as untrusted data. Telegram is locked to one user ID.</li>
+<li>When something fails it says what failed and what it did instead. It never invents a date, venue or speaker.</li>
+<li><b>Simulated in the demo:</b> the busy blocks on the demo calendar (study group, family dinner, gym) were added by us. Everything else is a live run on real accounts.</li>
+<li><b>Next:</b> an event crawl route with travel times, and next-morning follow-up drafts.</li>
+</ul></section>
+</body></html>
