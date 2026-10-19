@@ -2,6 +2,9 @@
 
 Hackathon project, built live Oct 19 2026, 11:45 AM–3:15 PM PT. Submissions are due at 3:15, a hard deadline. Strategy, timeline and judge notes are in `PREP.md` (gitignored; read it first).
 
+## Who does what
+Two people build this. Read the file for your user: `diego.md` (Diego) or `lukas.md` (Lukas). Each lists the files that person owns, their tasks and their rules. Only edit your own files.
+
 ## What this is
 A personal agent that finds tech events worth your time (reads your Google Calendar + Luma invites, suggests and calendars the best, writes a Doc digest); for hackathon picks it adds a judges/sponsors strategy brief (stretch, `hackathon-prep.md`). Pivoted from hackathon-only at ~12 PM Oct 19. **There's no app code: the agent is Cline.** The product is the skill at `.cline/skills/fomo-bot/SKILL.md` plus `setup.sh`. Don't add a Python or JS app, a web UI or a framework unless Diego asks.
 
