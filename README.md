@@ -44,8 +44,6 @@ Ranked picks on your calendar + a Google Doc digest
 A weekly `cline schedule` run produces a fresh digest every Monday.
 
 ## Guardrails
-Experimental: say "sign me up" and the bot fills the event's registration form, shows you every answer, and submits only after you reply "yes". It never pays and never runs this unattended.
-
 The agent creates Docs, Calendar events and Gmail drafts only. It never sends, deletes or forwards email, never adds attendees, and never notifies anyone, even in scheduled runs. Outreach stays a draft until you press send.
 
 ## Setup
