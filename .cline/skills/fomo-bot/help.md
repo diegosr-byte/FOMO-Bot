@@ -5,6 +5,9 @@ Reply with the text below, as plain short messages. Do not run any other step.
 ---
 Hi! I'm FOMO Bot. I find tech events worth your time, put the best on your calendar, and say no to the rest.
 
+**0. First time?**
+I ask three quick questions (who you are, what you build, your goal: cofounder, clients or investors) and remember them. Say `update profile` to change them.
+
 **1. Find events**
 `/fomo-bot find me events this week. goal: meet AI founders`
 I read your calendar and Gmail, search and verify events, rank them by who will be there, and send you a Doc with the picks, the reasons and the sources. Picks go on your calendar as "[Suggested]" holds.

@@ -23,6 +23,7 @@ A personal agent that finds tech events worth your time (reads your Google Calen
 ## Rules
 - Guardrail: the agent may create Docs, Calendar events and Gmail **drafts** only (max 3 drafts per run, addressed to the user's own address, never a guessed email). It never sends, deletes or forwards email, never adds attendees, and creates events with `send_updates:none` (Composio's default emails attendees).
 - Never read or print `.env` or API keys.
+- Onboarding (`.clinerules/onboarding.md`, Lukas's) saves the user's answers to `profile.md`, the only local file the agent may write. It is gitignored; never commit it. Scheduled and headless runs never ask onboarding questions.
 - Never commit `.env` or `PREP.md`. Never print API keys.
 - Iterate fast: test the skill with `web_search`/`web_fetch` first; add deep research last.
 - Diego is non-technical: explain decisions in a line, and give him exact commands to run in his own Terminal for anything interactive.
