@@ -1,6 +1,6 @@
 # Diego's workstream (for Diego's Claude Code)
 
-Read `CLAUDE.md` first. Deadline: **submit at 3:15 PM PT**, feature freeze at **2:30**. Diego is non-technical: explain decisions in a line and give exact Terminal commands for anything interactive.
+Read `CLAUDE.md` first. Deadline: **submit at 3:15 PM PT**, feature freeze at **2:50**. Diego is non-technical: explain decisions in a line and give exact Terminal commands for anything interactive.
 
 ## You own (only you edit these)
 - `.cline/skills/fomo-bot/SKILL.md`: the main flow (calendar + Gmail, then find, verify, rank, then Calendar events + Doc digest)
@@ -14,15 +14,16 @@ Lukas owns `hackathon-prep.md`, `inbox-mode.md`, `README.md` and the schedule. S
 3. **Merge Lukas's `inbox-mode.md`** into Step 1 of `SKILL.md` as soon as he pushes it. Keep it short.
 4. **Fix the invocation.** Find out whether `cline "/fomo-bot ..."` loads the skill or plain `cline "find me events"` does. Tell Lukas so he can fix the README.
 5. **Wire in Lukas's `hackathon-prep.md`** (Step 6 of `SKILL.md`) once he pushes it, and test the full path on a hackathon pick.
-6. **By 2:30, freeze.** Save a backup run of the main flow (the Doc and Calendar links), and do a dry run of the demo.
+6. **By 2:50, freeze.** Save a backup run of the main flow (the Doc and Calendar links), and do a dry run of the demo.
 
-## Demo video, 2:30-3:00, together with Lukas
+## Demo video, 2:50-3:05, together with Lukas
 Diego drives the live run and narrates the personal part (calendar, conflict, picks). Lukas narrates the hackathon brief and the weekly schedule, and records. Use a saved run if the live one is slow.
 
 ## Don't
 - Don't edit Lukas's files (`lukas.md`, `inbox-mode.md`, `hackathon-prep.md`, `README.md`).
 - Never commit `.env` or `PREP.md`. Never print API keys.
-- The agent creates Docs and Calendar events only. It never sends, deletes or forwards email, never adds attendees, and always uses `send_updates:none`.
+- The agent creates Docs, Calendar events and Gmail drafts only (max 3 drafts per run, addressed to the user's own address). It never sends, deletes or forwards email, never adds attendees, and always uses `send_updates:none`.
+- Diego approved the drafts change at ~12:50 PM. `people-outreach.md` (Lukas) is called from SKILL.md Steps 4 and 7; both skip if the file is missing or starts with TODO.
 
 ## Interface with Lukas
 - `inbox-mode.md` turns Luma invite emails into a list of `{name, date, url, host}` plus 3-5 inferred interests. `SKILL.md` Step 1 calls it.

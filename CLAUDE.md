@@ -6,7 +6,7 @@ Hackathon project, built live Oct 19 2026, 11:45 AM–3:15 PM PT. Submissions ar
 Two people build this. Read the file for your user: `diego.md` (Diego) or `lukas.md` (Lukas). Each lists the files that person owns, their tasks and their rules. Only edit your own files.
 
 ## What this is
-A personal agent that finds tech events worth your time (reads your Google Calendar + Luma invites, suggests and calendars the best, writes a Doc digest); for hackathon picks it adds a judges/sponsors strategy brief (stretch, `hackathon-prep.md`). Pivoted from hackathon-only at ~12 PM Oct 19. **There's no app code: the agent is Cline.** The product is the skill at `.cline/skills/fomo-bot/SKILL.md` plus `setup.sh`. Don't add a Python or JS app, a web UI or a framework unless Diego asks.
+A personal agent that finds tech events worth your time (reads your Google Calendar + Luma invites, suggests and calendars the best, writes a Doc digest); for hackathon picks it adds a judges/sponsors strategy brief (stretch, `hackathon-prep.md`); also ranks events by who is attending against the user's goal and drafts outreach (`people-outreach.md`). Feature freeze is 2:50 PM. Pivoted from hackathon-only at ~12 PM Oct 19. **There's no app code: the agent is Cline.** The product is the skill at `.cline/skills/fomo-bot/SKILL.md` plus `setup.sh`. Don't add a Python or JS app, a web UI or a framework unless Diego asks.
 
 ## Tools (all tested Oct 19, ~1 AM)
 - Cline CLI 3.0.73. Run it from this folder (skills are workspace-scoped). Model: free Nemotron 3.5 Super VL until the event credits arrive.
@@ -21,7 +21,8 @@ A personal agent that finds tech events worth your time (reads your Google Calen
 - Headless and scheduled Cline runs auto-approve every tool call.
 
 ## Rules
-- Guardrail: the agent may create Docs and Calendar events only. It never sends, deletes or forwards email, never adds attendees, and creates events with `send_updates:none` (Composio's default emails attendees).
+- Guardrail: the agent may create Docs, Calendar events and Gmail **drafts** only (max 3 drafts per run, addressed to the user's own address, never a guessed email). It never sends, deletes or forwards email, never adds attendees, and creates events with `send_updates:none` (Composio's default emails attendees).
+- Never read or print `.env` or API keys.
 - Never commit `.env` or `PREP.md`. Never print API keys.
 - Iterate fast: test the skill with `web_search`/`web_fetch` first; add deep research last.
 - Diego is non-technical: explain decisions in a line, and give him exact commands to run in his own Terminal for anything interactive.
