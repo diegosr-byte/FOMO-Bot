@@ -21,10 +21,12 @@
     `Send to <email> (found: <source url>)` ·
     `Send to <email> (company address: <source url>)` ·
     `Send to <email> (GUESSED from the pattern <pattern> seen at <source url>; unverified, may bounce)` ·
-    `No email found: paste as a LinkedIn/X message to <profile url>`.
+    `No email found. Reach them via:` followed by the contact list below.
+    In every case, line 2 is `Other ways to reach them:` with every public route found during B2.5 and A1, one per line with its URL: X, LinkedIn, personal website or contact form, GitHub, booking link (Calendly or similar), newsletter or blog, and Telegram, Discord or Farcaster only if they published it. List only what you actually saw, never a guessed handle. If you found none at all, write "none found" and name the event and host so the user can ask there.
+    The message text below works for email and as a DM (keep it under 1000 characters so it fits a LinkedIn note).
     Only guess as in B2.5, always labelled GUESSED, and never put any found or guessed address in To.
   - Then 4-6 sentences: cite the specific thing they shipped, one ask (15-minute coffee at the event), and 2 free slots from the Step 1 calendar data, signed with the user's first name.
   - Never send a draft. Never add anyone as a Calendar attendee. Get the user's own address with `~/.local/bin/composio execute GMAIL_GET_PROFILE -d '{}'` (the `emailAddress` field).
-- **B4 Add to the Doc** under `## People`: per pick, the people with sources; the prep card; the list of drafts with each one's route and email status (found, company or guessed). Rewrite the whole Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN` (the existing Markdown plus the new section, so nothing is lost); if that fails, append with `GOOGLEDOCS_INSERT_TEXT_ACTION` and `"append_to_end":true`. Check inputs with `~/.local/bin/composio tools info <SLUG>`. **No Google Docs connected** (the user may choose not to link it): append the same section to the local digest file `digests/<YYYY-MM-DD>.md` in the repo folder instead, and give the user its path. Write nowhere else on disk.
+- **B4 Add to the Doc** under `## People`: per pick, the people with sources; the prep card; the list of drafts with each one's route, email status (found, company or guessed) and the other contact links. Rewrite the whole Doc with `GOOGLEDOCS_UPDATE_DOCUMENT_MARKDOWN` (the existing Markdown plus the new section, so nothing is lost); if that fails, append with `GOOGLEDOCS_INSERT_TEXT_ACTION` and `"append_to_end":true`. Check inputs with `~/.local/bin/composio tools info <SLUG>`. **No Google Docs connected** (the user may choose not to link it): append the same section to the local digest file `digests/<YYYY-MM-DD>.md` in the repo folder instead, and give the user its path. Write nowhere else on disk.
 
 Not built yet: event crawl route with travel times, next-morning follow-up drafts.
