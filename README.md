@@ -19,7 +19,7 @@ Built in the open at the Cline × Parallel × Composio Hackathon (Open Source AI
 > Demo video: _TODO_
 
 ## Why
-_TODO: one paragraph. 3 hackathons in 3 weeks, hours of prep each time, and events found by luck._
+In three weeks I entered three hackathons. Each time I spent hours on prep: reading the event page, finding out who the judges were, checking every sponsor's docs. And I only found the events by luck, through a friend or a random invite. Calendar apps don't help, since they only show events you already know about. FOMO Bot does the finding and the prep for you, and it says no to the events that don't fit your week.
 
 ## How it works
 There's no app code. The agent is [Cline](https://cline.bot) running one skill:
@@ -58,9 +58,23 @@ cp .env.example .env    # add your PARALLEL_API_KEY
 ## Usage
 Run from this folder (skills are workspace-scoped).
 ```sh
-cline "/fomo-bot find me events this month"     # TODO: confirm the invocation
-cline "/fomo-bot https://luma.com/<event>"
+cline "/fomo-bot find me events in the next 3 weeks. goal: meet AI founders and builders"
+cline "/fomo-bot https://luma.com/<event>"      # a specific event; hackathons also get a judges/sponsors brief
+cline "/fomo-bot scan my inbox"                 # list your Luma invites and inferred interests
 ```
+The `/fomo-bot` prefix is required; plain prompts don't load the skill.
+
+**Every Monday at 8 AM:**
+```sh
+cline schedule create fomo-monday --cron "0 8 * * 1" --workspace "$PWD" \
+  --prompt "/fomo-bot find me events in the next 3 weeks. goal: meet AI founders and builders"
+```
+
+**From your phone (Telegram):** create a bot with @BotFather, then run it locked to your own Telegram user ID:
+```sh
+cline connect telegram -k <BOT_TOKEN> --allowed-user-id <YOUR_ID> --cwd "$PWD"
+```
+Then message the bot `/fomo-bot find me events this week`.
 
 ## Built with
 [Cline](https://cline.bot) · [Parallel](https://parallel.ai) · [Composio](https://composio.dev)
