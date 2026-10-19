@@ -2,6 +2,16 @@
 
 **A personal agent that finds the tech events worth your time.** It reads your Google Calendar and your Luma invites, searches for upcoming hackathons, talks and conferences that fit you, adds the best to your calendar and writes you a cited digest in Google Docs. When the top pick is a hackathon, it also researches the judges and sponsors and writes a strategy brief.
 
+## The key idea: rank events by the people, not the topic
+Most event finders match topics. FOMO Bot matches your **goal** ("find a technical cofounder", "meet proptech investors", "get hired at company X"). _(In progress, built at the hackathon.)_
+
+1. **Research the people.** For each top event, Parallel researches the hosts, speakers, sponsors and the public guest list: role, what they recently shipped or posted, with sources.
+2. **Pick with a reason.** "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Every skipped event gets a one-line reason, so the agent says no for you.
+3. **Prep card per person.** 3 people to find, what each recently shipped, one smart question each, and a 20-second intro tailored to that room.
+4. **Outreach to set up meetings.** The agent writes a personal meeting request to each person, citing something they actually shipped and proposing slots from your free calendar time. It is saved as a Gmail **draft** for you to review and send, never sent automatically. If no public email exists, it gives you a LinkedIn or X message to paste.
+
+Next on the list: an event crawl route with real travel times, and next-morning follow-up drafts ("who did you meet?"). Also planned: an energy budget such as "max 3 events a week".
+
 Built in the open at the Cline × Parallel × Composio Hackathon (Open Source AI Week, SF, Oct 19 2026).
 
 > Demo video: _TODO_
@@ -29,7 +39,7 @@ Ranked picks on your calendar + a Google Doc digest
 A weekly `cline schedule` run produces a fresh digest every Monday.
 
 ## Guardrails
-The agent creates Docs and Calendar events only. It never sends, deletes or forwards email, never adds attendees, and never notifies anyone, even in scheduled runs.
+The agent creates Docs, Calendar events and Gmail drafts only. It never sends, deletes or forwards email, never adds attendees, and never notifies anyone, even in scheduled runs. Outreach stays a draft until you press send.
 
 ## Setup
 Requires Node, a [Cline](https://cline.bot) account, a [Parallel](https://platform.parallel.ai) API key and a [Composio](https://composio.dev) account.
