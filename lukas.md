@@ -40,7 +40,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
   - [ ] Tested: drafts are in Gmail, addressed to you, nothing sent.
 - [ ] 6. **Stretch: skipped.** Event crawl route and follow-up drafts are not built (freeze is 2:50). The skill file says so.
 
-- [x] 7. **Onboarding profile** (`.clinerules/onboarding.md`, loaded in every Cline session, so it also works in Telegram). On the first message the bot asks: who are you, what are you building, and your goal (cofounder, clients or investors). Saved to `profile.md` (gitignored). `people-outreach.md` uses the profile goal when there is no `goal:` line.
+- [x] 7. **Onboarding profile** (`.clinerules/onboarding.md`, loaded in every Cline session, so it also works in Telegram). On the first message the bot asks: who are you, what are you building, and your goal (cofounder, clients, investors or a job in tech). Saved to `profile.md` (gitignored). `people-outreach.md` uses the profile goal when there is no `goal:` line.
   - [ ] Tested in Telegram: send "hi", answer the 3 questions, check `profile.md` exists; send "hi" again and it greets you by name.
 
 - [x] 8. **Email finding + labelled guess** (`people-outreach.md` B2.5). Searches the event page, the person's site, GitHub, talk pages and the company team page; then a published company address; last resort a guess from the company's email pattern, labelled GUESSED with its source. Every draft also lists all other public routes found (X, LinkedIn, website/contact form, GitHub, booking link), so there is always a way to reach them. Work emails only, max 4 searches and 4 fetches per person, never in To.

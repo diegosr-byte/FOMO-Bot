@@ -3,7 +3,7 @@
 **A personal agent that finds the tech events worth your time.** It reads your Google Calendar and your Luma invites, searches for upcoming hackathons, talks and conferences that fit you, adds the best to your calendar and writes you a cited digest in Google Docs. When the top pick is a hackathon, it also researches the judges and sponsors and writes a strategy brief.
 
 ## The key idea: rank events by the people, not the topic
-Most event finders match topics. FOMO Bot matches your **goal** ("find a technical cofounder", "meet proptech investors", "get hired at company X"). _(In progress, built at the hackathon.)_
+Most event finders match topics. FOMO Bot matches your **goal** ("find a technical cofounder", "meet proptech investors", "get a job in tech"). _(In progress, built at the hackathon.)_
 
 1. **Research the people.** For each top event, Parallel researches the hosts, speakers, sponsors and the public guest list: role, what they recently shipped or posted, with sources.
 2. **Pick with a reason.** "Go to this one. The Parallel founder is judging and two YC proptech founders are attending." Every skipped event gets a one-line reason.
