@@ -49,6 +49,9 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] 9. **Contact cards, no automatic outreach** (`people-outreach.md` B5). The bot's reply (Telegram or terminal) ends with one card per person: the message text, a `mailto:` link with subject and body filled in, and links to X, LinkedIn, website or contact form, GitHub and booking page. The user taps, pastes and sends. Automatic DMs on X or LinkedIn were dropped: LinkedIn bans automation, X DMs need a paid API, and it would break the never-send guardrail.
   - [ ] Tested in Telegram: the cards appear, the links open the right profiles, the mailto link opens a filled-in email.
 
+- [x] 10. **Sign me up, with approval** (experimental; new skill `.cline/skills/fomo-register/SKILL.md`). On "sign me up", the bot fills the event's registration form in a Composio browser session (Luma login code read from Gmail), sends the filled form and every answer, and submits only after the user replies "yes". Never pays, never invents answers, never runs headless. Tool names are looked up at run time (the lookup was blocked on this PC), so it is untested.
+  - [ ] Tested in Telegram on a free Luma event: a screenshot or field list arrives, nothing is submitted before "yes", the confirmation arrives after.
+
 **Outreach safety (decided: drafts, not sends).** Every draft is addressed to the user's own address, with the real recipient and route in the body. The user reviews and sends. Why: scheduled and headless runs auto-approve every tool call, so a real send would email strangers with no human check. Cap at 3 drafts per run. Never add attendees to a Calendar event as a way to contact someone. In the demo, show the draft sitting in Gmail and say "one click to send".
 
 **Needs Diego (SKILL.md, CLAUDE.md are his):**
@@ -57,6 +60,7 @@ Core loop stays: discover, rank, calendar, Doc. New on top: the agent researches
 - [x] Demo rule: drafts go to the user's own address (done by Diego).
 - [x] `CLAUDE.md` guardrail updated to include Gmail drafts (done by Diego, ~12:50 PM).
 - [ ] Allow labelled email guesses (needs Diego's OK). SKILL.md guardrail: replace "Never guess an email address." with "A guessed email may only appear in a draft's body, labelled GUESSED with its pattern source (see `people-outreach.md` B2.5); never put a guessed or found address in To." CLAUDE.md line 24: replace "never a guessed email" with "guessed emails only as labelled suggestions in the draft body". Until then the SKILL.md guardrail wins and the bot won't guess.
+- [ ] Allow sign-up with approval: CLAUDE.md Rules should allow "submit an event registration form only after the user's explicit yes in chat, never headless, never paid" (implemented in `.cline/skills/fomo-register/SKILL.md`, a separate skill, so SKILL.md is untouched).
 - [ ] SKILL.md: Step 1 reads `profile.md` (City, Building, Goal) before inferring from the inbox; the guardrail allows writing `profile.md` (onboarding) and `digests/` in the repo folder. Both files are gitignored.
 - [ ] SKILL.md Step 5 and the guardrail: when Google Docs isn't connected, write the digest to `digests/<YYYY-MM-DD>.md` in the repo folder instead (and allow that one local file in the guardrail). `people-outreach.md` already does this; `.gitignore` has `digests/`. Needed so Lukas can test without Docs; the demo still uses a real Doc on Diego's account.
 
